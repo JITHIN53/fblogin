@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navigtion/sign_in_screen.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -14,16 +15,20 @@ class MyApp extends StatefulWidget {
 class _State extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(leading: Image.asset('assets/images/fb.jpg'),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+            leading: Image.asset('assets/images/fb.jpg'),
             backgroundColor: Colors.indigo,
             toolbarHeight: 100,
             centerTitle: true,
             title: Text(
               'facebook',
               style: TextStyle(fontSize: 35.0, fontWeight: FontWeight.bold),
-            )),
-        body: Padding(
+            ),),
+        
+        body: SingleChildScrollView(
+          child: Padding(
             padding: EdgeInsets.all(28),
             child: Column(
               children: <Widget>[
@@ -61,17 +66,32 @@ class _State extends State<MyApp> {
                 ),
                 MaterialButton(
                   height: 40,
-                  minWidth: 350,
+                  minWidth: 150,
                   textColor: Colors.white,
                   color: Colors.indigo,
                   child: Text('LOG IN'),
                   onPressed: () {},
                 ),
-                SizedBox(
-                  height: 180,
+                Padding(
+                  padding: const EdgeInsets.all(50),
+                  child: FlatButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => signInScreen()),
+                      );
+                    },
+                    textColor: Colors.blue,
+                    child: Text('New User? Create Account'),
+                  ),
                 ),
-                Text('New User? Create Account'),
+
+
               ],
-            )));
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
